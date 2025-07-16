@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Properties>
+        <property name="logging.archivo">${bundle:application:logging.file.name}</property>
+        <property name="max.size">${bundle:application:spring.logging.max.size}</property>        
+    </Properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout>
+                <pattern>%d %p %C{1.} [%t] %m%n</pattern>
+            </PatternLayout>
+        </Console>
+
+        <RollingFile name="RollingFile"
+                     fileName="${logging.archivo}"
+                     filePattern="${logging.archivo}-%d{dd-MMMM-yyyy}-%i.log.gz">
+            <PatternLayout>
+                <pattern>%d %p %C{1.} [%t] %m%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <OnStartupTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="${max.size}"/>
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="Console" />
+        </Root>
+        <Logger name="mx.com.bimbo" level="info">
+            <AppenderRef ref="RollingFile" />
+        </Logger>
+    </Loggers>
+
+</Configuration>

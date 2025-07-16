@@ -47,7 +47,7 @@ public class lealtadController {
 	}
 	
 	@PostMapping("/registraPuntos")
-	public Integer registraPuntos (@Valid @RequestBody puntosDTO puntos) {
+	public Integer registraPuntos (@Valid @RequestBody puntosDTO puntos) {				
 		return puntosService.RegistraPuntos(puntos);		
 	}	
 	

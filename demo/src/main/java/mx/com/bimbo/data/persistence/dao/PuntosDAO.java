@@ -8,9 +8,12 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.ParameterMode;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.StoredProcedureQuery;
+import lombok.extern.slf4j.Slf4j;
+import mx.com.bimbo.controllers.lealtadController;
 import mx.com.bimbo.data.persistence.model.puntosEntity;
 
 @Repository
+@Slf4j
 public class PuntosDAO implements IPuntosDAO {
 
 	@PersistenceContext
@@ -36,7 +39,7 @@ public class PuntosDAO implements IPuntosDAO {
 		
 		}
 		catch (Exception e) {
-			e.printStackTrace();
+			log.error("Error al ejecutar el SP");
 			return -1; 
 		}
 		
